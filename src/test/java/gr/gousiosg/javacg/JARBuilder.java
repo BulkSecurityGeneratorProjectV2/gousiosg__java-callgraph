@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.net.URI;
+import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
@@ -52,7 +53,7 @@ public class JARBuilder {
 			throw new RuntimeException("Cannot compile classes for the JAR");
 		}
 
-		File file = File.createTempFile("test", ".jar");
+		File file = Files.createTempFile("test",".jar").toFile();
 		JarOutputStream jar = new JarOutputStream(new FileOutputStream(file), createManifest());
 		for (File classFile : classFiles) {
 			add(classFile, jar);
